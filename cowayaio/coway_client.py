@@ -53,7 +53,7 @@ class CowayClient:
 
         response, html_page = await self._get(Endpoint.OAUTH_URL)
         if response.status != 200:
-            error = response.text()
+            error = await response.text()
             raise CowayError(f'Coway API error while fetching login page: {error}')
         cookies = response.cookies
         soup = BeautifulSoup(html_page, 'html.parser')
